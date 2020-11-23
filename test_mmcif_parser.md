@@ -53,6 +53,7 @@ def get_mmCIF_by_pdbid(pdbid, parser):
     elif parser=='PyCifRW':
         blc = CifFile.ReadCif(f'http://files.rcsb.org/download/{pdbid}.cif').first_block() 
     return blc
+    
 def get_covalent_bond_record_in_mmcif(blc): 
     if "_struct_conn.id" not in blc: 
         return f'{blc["_entry.id"]}:struct_conn_IS_NOT_FOUND'
@@ -102,8 +103,7 @@ def get_covalent_bond_record_in_mmcif(blc):
                             covalent_bond_record.append(blc["_struct_conn.ptnr2_label_atom_id"     ][i])
                             covalent_bond_record.append(blc["_struct_conn.pdbx_ptnr2_label_alt_id" ][i]) 
                             covalent_bond_record.append(blc["_entity.type"][k])  
-                            break
-                    
+                            break                    
                     break 
             cbr += ','.join(covalent_bond_record)
             cbr += '\n'
