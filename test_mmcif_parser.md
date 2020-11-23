@@ -14,7 +14,7 @@
 * Extremely slow: 30mins to process "1JGC". 
 ### BioPython
 * Easy to install
-* Fast
+* Fast: 0.8s to process "1JGC"
 ## PyCifRW vs BioPython
 1. Get mmCIF of 1PWC and 1JGC to use PyCifRW and BioPython. 
 2. Process them with the same function (see source code in [Appendix I](https://github.com/xg590/PDB_Cov/new/master#appendix-i))
@@ -24,7 +24,7 @@ mmcif_1PWC_PyCifRW   = get_mmCIF_by_pdbid('1PWC', 'PyCifRW')
 mmcif_1JGC_BioPython = get_mmCIF_by_pdbid('1JGC', 'BioPython')
 mmcif_1JGC_PyCifRW   = get_mmCIF_by_pdbid('1JGC', 'PyCifRW')
 ```
-* It takes 3 milliseconds to process mmcif_1PWC_BioPython
+* It takes 3 milliseconds to process mmcif_1PWC_BioPython (getting object of mmcif_1PWC_BioPython is slow)
 ```
 get_covalent_bond_record_in_mmcif(mmcif_1PWC_BioPython) 
 ```
