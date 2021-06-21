@@ -19,6 +19,8 @@ cat << EOF >> ~/.jupyter/jupyter_notebook_config.py
 c.NotebookApp.password = 'sha1:ffed18eb1683:ee67a85ceb6baa34b3283f8f8735af6e2e2f9b55'
 c.NotebookApp.allow_remote_access = True
 EOF
+wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.11.0+-x64-linux.tar.gz
+tar zxvf ncbi-blast-2.11.0+-x64-linux.tar.gz -C software/
 ```
 ```
 source $HOME/software/miniconda3/bin/activate rdkit_2019
