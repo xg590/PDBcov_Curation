@@ -1,0 +1,18 @@
+```
+username=$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 10 | head -n 1)
+useradd -m -s /bin/bash $username
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
+bash Miniconda3-latest-Linux-x86_64.sh -b -f -p $HOME/software/miniconda3/
+$HOME/software/miniconda3/bin/conda create -y -c rdkit -n rdkit_2019 rdkit=2019  pandas=1.0 # -c channel; -n envName
+source $HOME/software/miniconda3/bin/activate rdkit_2019
+pip install jupyter jupyter_contrib_nbextensions 
+jupyter contrib nbextension install --user
+mkdir ~/.jupyter
+cat << EOF >> ~/.jupyter/jupyter_notebook_config.py 
+c.NotebookApp.password = 'sha1:ffed18eb1683:ee67a85ceb6baa34b3283f8f8735af6e2e2f9b55'
+EOF
+```
+```
+source $HOME/software/miniconda3/bin/activate rdkit_2019
+jupyter-notebook
+```
