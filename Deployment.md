@@ -10,8 +10,12 @@ chmod 544 /home/$username/backend/certs/privkey1.pem
 su - $username
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
 bash Miniconda3-latest-Linux-x86_64.sh -b -f -p $HOME/software/miniconda3/
-$HOME/software/miniconda3/bin/conda create -y -c rdkit -n rdkit_2019 rdkit=2019  pandas=1.0 # -c channel; -n envName
-source $HOME/software/miniconda3/bin/activate rdkit_2019
+wget https://yzlab3.chem.nyu.edu/share/rdkit_on_hpc.yml
+$HOME/software/miniconda3/bin/conda-env create -f rdkit_on_hpc.yml
+source $HOME/software/miniconda3/bin/activate rdkit_on_hpc
+wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.11.0+-x64-linux.tar.gz
+tar zxvf ncbi-blast-2.11.0+-x64-linux.tar.gz -C software/
+
 pip install jupyter jupyter_contrib_nbextensions flask flask_basicauth
 jupyter contrib nbextension install --user
 mkdir ~/.jupyter
@@ -19,10 +23,4 @@ cat << EOF >> ~/.jupyter/jupyter_notebook_config.py
 c.NotebookApp.password = 'sha1:ffed18eb1683:ee67a85ceb6baa34b3283f8f8735af6e2e2f9b55'
 c.NotebookApp.allow_remote_access = True
 EOF
-wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.11.0+-x64-linux.tar.gz
-tar zxvf ncbi-blast-2.11.0+-x64-linux.tar.gz -C software/
-```
-```
-source $HOME/software/miniconda3/bin/activate rdkit_2019
-jupyter-notebook
-```
+``` 
